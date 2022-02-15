@@ -1,7 +1,7 @@
 PROJECT_NAME := checkly Package
 
 PACK             := checkly
-ORG              := pulumi
+ORG              := stack72
 PROJECT          := github.com/${ORG}/pulumi-${PACK}
 NODE_MODULE_NAME := @pulumi/${PACK}
 TF_NAME          := ${PACK}

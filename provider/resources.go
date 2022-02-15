@@ -19,11 +19,11 @@ import (
 	"path/filepath"
 
 	"github.com/checkly/terraform-provider-checkly/checkly"
-	"github.com/pulumi/pulumi-checkly/provider/pkg/version"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
+	"github.com/stack72/pulumi-checkly/provider/pkg/version"
 )
 
 // all of the token components used below.
@@ -62,8 +62,9 @@ func Provider() tfbridge.ProviderInfo {
 		//
 		// You may host a logo on a domain you control or add an SVG logo for your package
 		// in your repository and use the raw content URL for that file as your logo URL.
-		LogoURL:     "",
-		Description: "A Pulumi package for creating and managing checkly cloud resources.",
+		LogoURL:           "",
+		Description:       "A Pulumi package for creating and managing checkly cloud resources.",
+		PluginDownloadURL: "https://github.com/stack72/pulumi-checkly/releases/${VERSION}",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
 		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.
@@ -74,7 +75,9 @@ func Provider() tfbridge.ProviderInfo {
 		GitHubOrg:            "checkly",
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"checkly_check": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "Check")},
+			"checkly_check": {
+				Tok: tfbridge.MakeResource(mainPkg, mainMod, "Check"),
+			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
